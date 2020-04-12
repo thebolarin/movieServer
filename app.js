@@ -10,7 +10,9 @@ const movieRoutes = require('./route/movies')
 const app = express();
 app.use(cors());
 
-const MONGODB_URI = 'mongodb+srv://bolarinwa:P8yOmHjo17w9UcO4@cluster0-25yze.mongodb.net/checkdc?authSource=admin&replicaSet=Cluster0-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true';
+const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${
+  process.env.MONGO_PASSWORD
+}@cluster0-25yze.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`;
 
 
 
