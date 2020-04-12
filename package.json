@@ -3,18 +3,25 @@
   "version": "1.0.0",
   "description": "server side application for a test from check dc",
   "main": "app.js",
+  "engines":{
+    "node":"13.9.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "start-server": "node app.js"
+    "start": "NODE_ENV=production MONGO_USER=bolarinwa MONGO_PASSWORD=P8yOmHjo17w9UcO4 MONGO_DEFAULT_DATABASE=checkdc node app.js",
+    "start-server": "node app.js",
+    "start:dev": "nodemon app.js"
   },
   "author": "ODUTUSIN MOSES BOLARINWA",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.22.0",
     "mongoose": "^5.9.7",
+    "morgan": "^1.10.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {

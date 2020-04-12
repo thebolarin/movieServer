@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "bolarinwa",
+        "MONGO_PASSWORD": "P8yOmHjo17w9UcO4",
+        "MONGO_DEFAULT_DATABASE": "checkdc"
+    }
+}
