@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production MONGO_USER=bolarinwa MONGO_PASSWORD=P8yOmHjo17w9UcO4 MONGO_DEFAULT_DATABASE=checkdc node app.js",
+    "start": "NODE_ENV=production MONGO_USER=bolarinwa MONGO_PASSWORD=P8yOmHjo17w9UcO4 MONGO_DEFAULT_DATABASE=checkdc nodemon app.js",
     "start-server": "node app.js",
     "start:dev": "nodemon app.js"
   },

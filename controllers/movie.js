@@ -9,27 +9,52 @@ exports.getAllMovies = async (req, res, next) => {
     const ITEMS_PER_PAGE = req.query.length;
     const page = +req.query.page || 1;
     const dir = req.query.dir;
+    const search = req.query.sea;
     const totalItems = await Movie.find().countDocuments()
 
-    const movies = await Movie.find()
-      .skip(parseInt((page - 1) * ITEMS_PER_PAGE))
-      .limit(parseInt(ITEMS_PER_PAGE))
-      .sort({ year: dir })
-      .lean()
+    if (search) {
+      const moviess = await Movie.find({ 'title': search })
+        .skip(parseInt((page - 1) * ITEMS_PER_PAGE))
+        .limit(parseInt(ITEMS_PER_PAGE))
+        .sort({ year: dir })
+        .lean()
 
-    res.status(200).json({
-      message: 'Fetched movies successfully.',
-      movies: movies,
-      total: totalItems,
-      currentPage: page,
-      hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-      hasPreviousPage: page > 1,
-      nextPage: page + 1,
-      previousPage: page - 1,
-      lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
-      next_page_url: "?page=2",
-      prev_page_url: "?page=",
-    });
+      res.status(200).json({
+        message: 'Fetched movies successfully.',
+        movies: moviess,
+        total: totalItems,
+        currentPage: page,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+        next_page_url: "?page=2",
+        prev_page_url: "?page=",
+      });
+    } else {
+      const movies = await Movie.find()
+        .skip(parseInt((page - 1) * ITEMS_PER_PAGE))
+        .limit(parseInt(ITEMS_PER_PAGE))
+        .sort({ year: dir })
+        .lean()
+
+      res.status(200).json({
+        message: 'Fetched movies successfully.',
+        movies: movies,
+        total: totalItems,
+        currentPage: page,
+        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
+        hasPreviousPage: page > 1,
+        nextPage: page + 1,
+        previousPage: page - 1,
+        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE),
+        next_page_url: "?page=2",
+        prev_page_url: "?page=",
+      });
+    }
+
+
   }
   catch (err) {
     if (!err.statusCode) {
